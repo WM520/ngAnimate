@@ -5,23 +5,37 @@
     <title>无标题文档</title>
     <script type="text/javascript" src="../AngularJS/angular.min.js"></script>
     <script src="../AngularJS/angular-route.min.js"></script>
+    <script src="../AngularJS/angular-animate.min.js"></script>
+    <style>
+        .box{ background:#eee; transition:2s all; position: absolute;}
 
+        .box.ng-enter{
+            opacity: 0;
+        }
+        .box.ng-enter-active{
+            opacity: 1;
+        }
+        .box.ng-leave{
+            opacity: 1;
+        }
+        .box.ng-leave-active{
+            opacity: 0;
+        }
+    </style>
 </head>
 <body>
 <div ng-app="myApp">
-
-    <div class="header" ng-controller="firstController">
-
-        <a ng-click="$location.path('/div1')">第一个div</a>
-        <a ng-click="$location.path('/div2')">第二个div</a>
+    <div class="header">
+        <a href="#div1">第一个div</a>
+        <a href="#div2">第二个div</a>
         <a href="#div3">第三个div</a>
-
         <a href="#content/13/5">点击去内容12</a>
     </div>
-    <div ng-view></div>
+    <div ng-view class="box"></div>
+
 </div>
 <script type="text/javascript">
-    var app = angular.module("myApp", ['ngRoute']);
+    var app = angular.module("myApp", ['ngRoute','ngAnimate']);
     app.run(['$rootScope',function($rootScope){
 
         $rootScope.$on('$routeChangeStart',function(event,current,pre){
@@ -70,18 +84,16 @@
     app.controller('div4Controller',['$scope','$routeParams',function($scope,$routeParams){
         console.log($routeParams);
         $scope.id=$routeParams.num;
-
         $scope.text='div4Controller';
     }]);
 
 
 
 
-    app.controller('firstController',function($scope,$location){
 
-        $scope.$location= $location;
-        $scope.text='phonegap中文网';
-    });
+     app.controller('firstController',function($scope){
+         $scope.text='phonegap中文网';
+     });
 
 </script>
 
