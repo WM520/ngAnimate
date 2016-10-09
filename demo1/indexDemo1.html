@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../AngularJS/angular.min.js"></script>
+    <script src="http://cdn.bootcss.com/angular.js/1.2.9/angular-animate.min.js"></script>
+</head>
+
+
+<style>
+    .box {
+        background: red;
+        width: 200px;
+        height: 200px;
+    }
+
+</style>
+
+<script>
+    var app = angular.module('myApp', ['ngAnimate']);
+    app.controller('firstController', ['$scope', function ($scope) {
+        $scope.bBtn = true;
+    }]);
+//    app.animation
+</script>
+
+
+<body>
+
+<div ng-app="myApp">
+    <div ng-controller="firstController">
+        <input type="checkbox" ng-model="bBtn">
+        <div ng-if="bBtn" class="box"></div>
+    </div>
+</div>
+
+</body>
+</html>
